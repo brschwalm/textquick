@@ -1,29 +1,35 @@
-<h1>Listing users</h1>
+<h1>All Users</h1>
 
-<table>
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+
+<table class="table table-striped">
   <tr>
+    <th>Uid</th>
     <th>Name</th>
     <th>Provider</th>
-    <th>Uid</th>
     <th>Admin</th>
-    <th></th>
-    <th></th>
+    <th>Blocked</th>
     <th></th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.name %></td>
-    <td><%= user.provider %></td>
     <td><%= user.uid %></td>
-    <td><%= user.admin %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to user.name, user %></td>
+    <td><%= user.provider %></td>
+    <td><%= check_box_tag name="admin_checkbox", value=1, checked = user.admin?, :disabled => "disabled" %></td>
+    <td><%= check_box_tag name="blocked_checkbox", value=1, checked = user.is_blocked?, :disabled => "disabled" %></td>
+    <td>
+      <%= link_to 'Edit', edit_user_path(user), :class => "btn" %>
+      <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn" %>
+    </td>
   </tr>
 <% end %>
+  <tr>
+    <td colspan="6">
+      <%= link_to 'Add New User', "/auth/identity/register" %>
+    </td>
+  </tr>
 </table>
-
-<br />
-
-<%= link_to 'New User', new_user_path %>

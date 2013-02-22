@@ -1,4 +1,5 @@
-<%= form_for(@user) do |f| %>
+<%= bootstrap_form_for(@user, :html => {:class => "form-horizontal"}) do |f| %>
+
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -11,23 +12,20 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :provider %><br />
-    <%= f.text_field :provider %>
-  </div>
-  <div class="field">
-    <%= f.label :uid %><br />
-    <%= f.text_field :uid %>
-  </div>
-  <div class="field">
-    <%= f.label :admin %><br />
-    <%= f.check_box :admin %>
-  </div>
-  <div class="actions">
+    <%= f.uneditable_input :provider %>
+    <%= f.uneditable_input :uid %>
+    <%= f.check_box :admin, :label => 'Administrator' %>
+    <% unless @user.admin? %>
+        <%= f.check_box :is_blocked, :label => 'Blocked' %>
+    <% end %>
+
+    <%= bootstrap_fields_for(@identity) do |i| %>
+        <%= i.text_field :email %>
+        <%= i.password_field :password %>
+        <%= i.password_field :password_confirmation %>
+    <% end %>
+
     <%= f.submit %>
-  </div>
+
 <% end %>

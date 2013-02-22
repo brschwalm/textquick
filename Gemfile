@@ -28,6 +28,9 @@ gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'omniauth-identity'
 
+gem "bootstrap_forms", "~> 2.0.8"
+#gem "twitter_bootstrap_form_for", "~> 1.0.5"
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

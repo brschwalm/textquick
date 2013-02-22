@@ -1,5 +1,7 @@
 Textquick::Application.routes.draw do
 
+  get "dashboard/not_authorized"
+
   resources :users
 
   match "welcome" => "welcome#index"

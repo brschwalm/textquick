@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_filter :validate_admin
+
   # GET /users
   # GET /users.json
   def index
@@ -25,6 +28,8 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
+    @user.provider = "identity"
+    @identity = Identity.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,16 +40,24 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @identity = Identity.find(params[:id])
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    @user.provider = "identity"
+
+    ok = false
+    @identity = Identity.new(params[:identity])
+    @identity.name = @user.name
+    ok = @identity.save
+    @user.uid = @identity.uid
 
     respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+      if ok && @user.save
+        format.html { redirect_to users_url, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }

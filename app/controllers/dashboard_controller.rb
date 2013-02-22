@@ -10,4 +10,11 @@ class DashboardController < ApplicationController
 
   end
 
+  def not_authorized
+
+    respond_to do |format|
+      format.html #not_authorized.html.erb
+    end
+  end
+
 end

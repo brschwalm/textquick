@@ -8,14 +8,14 @@ class SessionController < ApplicationController
       user = User.create_omni_auth(auth)
     end
 
-    session[:user] = user
+    session[:user_id] = user.uid
     redirect_to dashboard_url, :notice => "Welcome %s" % user.name
 
   end
 
   def destroy
 
-    session[:user] = nil
+    session[:user_id] = nil
     redirect_to welcome_url, :notice => "Thanks!  Come back soon."
 
   end

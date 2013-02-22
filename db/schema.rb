@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220002748) do
+ActiveRecord::Schema.define(:version => 20130222223051) do
 
   create_table "identities", :force => true do |t|
     t.string   "name"
@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(:version => 20130220002748) do
     t.string   "provider"
     t.string   "uid"
     t.boolean  "admin"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "is_blocked", :default => false, :null => false
   end
 
 end

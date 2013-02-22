@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :admin, :name, :provider, :uid
+  attr_accessible :admin, :name, :provider, :uid, :is_blocked
 
   #Class-level method to create a new user from an OmniAuth Auth Token
   def User.create_omni_auth(auth)
