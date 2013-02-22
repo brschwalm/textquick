@@ -1,0 +1,20 @@
+<div class="navbar navbar-inverse navbar-fixed-top" xmlns="http://www.w3.org/1999/html">
+  <div class="navbar-inner" style="padding-left:10px;padding-right:10px;">
+
+    <a class="brand" href="#">TextQuick</a>
+
+
+      <% if is_authenticated? %>
+          <div class="pull-right">
+            <span class="navbar-text">Welcome <%= current_user.name %>.  |  </span>
+            <%= link_to "Sign Out", signout_path%>
+          </div>
+        <% else %>
+          <ul class="nav pull-right">
+            <li><%= link_to "Log In", "auth/identity"%></li>
+            <li><%= link_to "Register", "auth/identity/register"%></li>
+          </ul>
+      <% end %>
+
+  </div>
+</div>
