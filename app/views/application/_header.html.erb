@@ -1,7 +1,8 @@
 <div class="navbar navbar-inverse navbar-fixed-top" xmlns="http://www.w3.org/1999/html">
   <div class="navbar-inner" style="padding-left:10px;padding-right:10px;">
 
-    <a class="brand" href="#">TextQuick</a>
+    <%= link_to "TextQuick", welcome_url, :class=>"brand" %>
+    <!--<a class="brand" href="#">TextQuick</a>-->
 
 
       <% if is_authenticated? %>
