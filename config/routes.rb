@@ -1,5 +1,8 @@
 Textquick::Application.routes.draw do
 
+  resources :contacts
+
+
   get "dashboard/not_authorized"
 
   resources :users

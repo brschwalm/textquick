@@ -20,11 +20,11 @@
         <%= f.check_box :is_blocked, :label => 'Blocked' %>
     <% end %>
 
-    <%= bootstrap_fields_for(@identity) do |i| %>
-        <%= i.text_field :email %>
-        <%= i.password_field :password %>
-        <%= i.password_field :password_confirmation %>
-    <% end %>
+    <%#= bootstrap_fields_for(@identity) do |i| %>
+        <%#= i.text_field :email %>
+        <%#= i.password_field :password %>
+        <%#= i.password_field :password_confirmation %>
+    <%# end %>
 
     <%= f.submit %>
 
